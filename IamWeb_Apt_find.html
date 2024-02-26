@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아파트 매물 조회</title>
+</head>
+<body>
+    <h1>아파트 코드로 매물 조회</h1>
+    <form id="aptForm">
+        <input type="text" name="apt_code" id="apt_code" placeholder="아파트 코드 입력">
+        <button type="submit">실행하기</button>
+    </form>
+    <div id="listings"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#aptForm').submit(function(e) {
+                e.preventDefault();
+                var aptCode = $('#apt_code').val();
+                $.post('/get_listings', {apt_code: aptCode}, function(data) {
+                    // 여기에 데이터를 표로 표시하는 코드를 작성하세요.
+                    console.log(data);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
